@@ -5,7 +5,7 @@
 
 ## 学习资料
 
-网址：http://www.gulpjs.com.cn/ 
+网址：http://www.gulpjs.com.cn 
 内容信息比较全面，但某些知识点不够深入，相对比较入门的网站。
 
 ## 学习步骤
@@ -34,3 +34,15 @@
 		gulp
 
 	执行gulpfile.js中任务default
+
+----
+
+## aim of study
+
+1. Want to know gulp, which there is different from grunt. And main key is which use to build project simply and conveniently,smartly.
+2. As a tool is good to build project for front end web of working.
+
+## information of study
+
+website : http://www.gulpjs.com.cn
+There has base knowledge about gulp, so the website is relative to beginner to learn it.  beacuse it is not enough deep for the new people getting much more knowledge.
