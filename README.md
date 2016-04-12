@@ -35,6 +35,13 @@
 
 	执行gulpfile.js中任务default。
 
+6. gulp的API
+
+	- gulp.src : 读取符合匹配文件
+	- gulp.dict : 输出相应文件
+	- gulp.task : 并发执行任务，如果顺序执行任务，可以利用依赖关系处理
+	- gulp.watch : 监控文件变化
+
 ## 实验清单
 
 - 检查
@@ -45,8 +52,10 @@
 	- css : gulp-minify-css
 	- image : gulp-imagemin
 	- html : gulp-htmlmin
-- 合并 gulp-concat
-- 编译sass gulp-ruby-sass
+- 合并 
+	- gulp-concat
+- 编译sass 
+	- gulp-ruby-sass
 
 以上都是gulp的插件plugins(网址：http://gulpjs.com/plugins/)，通过以下命令安装插件：
 
@@ -89,11 +98,29 @@ API : https://www.npmjs.com/package/gulp-jshint/
 					.pipe(jshint.reporter(stylish));
 			});
 
+			或者不引用模块，如下面代码所示：
+
+			gulp.task('jshint',function(){
+				return gulp.src('src/js/*.js')
+					.pipe(jshint())
+					.pipe(jshint.reporter('jshint-stylish'));
+			});
+
+	但是这样使用接口情况，作者说JSHint插件没有很好模块格式，据我所知情况尝试全部兼容。希望能使用，如果该插件使用此库不可以工作，感觉没有统一规定会带来问题。
+	> JSHint plugins have no good module format so I tried to support all of them I saw in the wild. Hopefully it worked, but if a JSHint plugin isn't working with this library feel free to open an issue.
+
+4. 自定义检查规则
+
+上面的API文档并没有详细说明，跳转到jshint官方文档上（http://jshint.com/docs/）有具体说明，下面其中一种使用方法。
+
+	- 项目添加.jshintrc文件
+	- 项目package.json添加属性jshintConfig，格式如："jshintConfig":".jshintrc"
+
 ### 检查css
 
 API : https://www.npmjs.com/package/gulp-csslint/
 
-同理安装模块和gulpfile.js文件中引入模块，写一个任务：
+1. 同理安装模块gulp-csslint和gulpfile.js文件中引入模块，写一个任务：
 		
 		var csslint = require('csslint');
 
@@ -102,6 +129,88 @@ API : https://www.npmjs.com/package/gulp-csslint/
 				.pipe(csslint())
 				.pipe(csslint.reporter());
 		});
+
+2. 自定义检查规则
+	
+	- 项目根目录添加.csslintrc文件或csslintrc.json
+
+	- 引入文件，代码如下
+			……
+			.pipe(csslint('.csslintrc')) or .pipe(csslint('csslintrc.json'))
+			……
+
+### 压缩js
+
+API : https://www.npmjs.com/package/gulp-uglify
+
+	1. 安装插件
+
+		npm install --save-dev gulp-uglify
+
+	2. 引入模块
+
+		var uglify = require('gulp-uglify');
+
+	3. 执行任务
+
+		gulp.task('uglify',function(){
+			return gulp.src('src/js/*.js')
+				.pipe(uglify())
+				.pipe(rename({ extname: '.min.js' }))//扩展名修改
+				.pipe(gulp.dest('build/js'));
+		});
+
+其中可以对输入文件进行重命名，需要安装模块gulp-rename，并引用；其API:https://www.npmjs.com/package/rename。
+
+### 压缩css
+
+API : https://www.npmjs.com/package/gulp-minify-css-mpath
+
+ 	同理安装模块gulp-minify-css和gulpfile.js文件中引入模块，写一个任务：
+		
+		var minicss = require('gulp-minify-css');
+
+		gulp.task('minicss',function(){
+			return gulp.src('src/css/*.css')
+				.pipe(minicss())
+				.pipe(rename({ extname: '.min.css' }))
+				.pipe(gulp.dest('build/css'));
+		});
+
+### 压缩image
+
+API : https://www.npmjs.com/package/gulp-imagemin
+
+压缩图片类型有PNG/JPG/GIF/SVG，相比tingpng网站(https://tinypng.com/)压缩率比较低。
+
+1.启用对JPG图片进行无损压缩，对progressive设置为true，而对PNG图片压缩这需要引用外部库，并用use数组属性添加方法。
+
+		var pngquant = require('imagemin-pngquant');
+
+		gulp.task('imagemin',function(){
+			return gulp.src('src/img/*')
+				.pipe(imagemin({ progressive: true,use:[pngquant()] }))
+				.pipe(gulp.dest('build/img'));
+		});
+
+### 压缩 html
+
+API : https://github.com/kangax/html-minifier
+
+全部配置项都是缺省false，所以根据自己情况进行压缩，下面例子只对空白进行删除。
+
+	var htmlmin = require('gulp-htmlmin');
+
+	gulp.task('htmlmin',function(){
+		return gulp.src('src/*')
+			.pipe(htmlmin({ collapseWhitespace: true }))
+			.pipe(gulp.dest('build'));
+	});
+
+### 合并
+
+API : https://www.npmjs.com/package/gulp-concat
+
 
 ----
 
