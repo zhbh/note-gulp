@@ -57,7 +57,7 @@
 - 编译sass 
 	- gulp-ruby-sass
 
-以上都是gulp的插件plugins(网址：http://gulpjs.com/plugins/)，通过以下命令安装插件：
+以上都是gulp的插件[plugins](http://gulpjs.com/plugins/)，通过以下命令安装插件：
 
 		npm install --save-dev [plugin1 plugin2 ……]
 
@@ -181,7 +181,7 @@ API : https://www.npmjs.com/package/gulp-minify-css-mpath
 
 API : https://www.npmjs.com/package/gulp-imagemin
 
-压缩图片类型有PNG/JPG/GIF/SVG，相比tingpng网站(https://tinypng.com/)压缩率比较低。
+压缩图片类型有PNG/JPG/GIF/SVG，相比[tingpng网站](https://tinypng.com/)压缩率比较低。
 
 1.启用对JPG图片进行无损压缩，对progressive设置为true，而对PNG图片压缩这需要引用外部库，并用use数组属性添加方法。
 
