@@ -211,6 +211,23 @@ API : https://github.com/kangax/html-minifier
 
 API : https://www.npmjs.com/package/gulp-concat
 
+合并就是同样类型文件合并一个文件，如下代码：
+		
+		gulp.task('concat',function(){
+			return gulp.src('src/js/*')
+				.pipe(concat('all.js'))
+				.pipe(gulp.dest('build/js'));
+		});
+
+但是上面存在一定问题，有些js文件可能存在依赖关系，所以可以设置先后顺序；
+
+		……
+		gulp.src(['./lib/one.js', './lib/two.js', './lib/three.js'])
+		pipe(concat('all.js'))
+		……
+
+同时支持生成Source maps。
+
 
 ----
 
