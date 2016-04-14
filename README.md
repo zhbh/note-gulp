@@ -13,8 +13,10 @@
 1. 安装npm(Node Package Manager)
 2. 安装gulp；window系统下，打开运行cmd，输入如下指令：
 
-		//global表示全局安装
-		npm install --global gulp
+```npm
+//global表示全局安装
+npm install --global gulp
+```
 
 3. 到当前开发项目目录中，安装开发依赖（对每一个项目都要安装gulp模块，--save-dev的意思开发模式下使用，把模块名称和版本号以key-value添加到项目根目录中package.json中devDependencies对象中），所以每次新的项目开始都需要下面的命令：
 
