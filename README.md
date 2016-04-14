@@ -13,8 +13,8 @@
 1. 安装npm(Node Package Manager)
 2. 安装gulp；window系统下，打开运行cmd，输入如下指令：
 
-```npm
 //global表示全局安装
+```npm
 npm install --global gulp
 ```
 
