@@ -22,12 +22,14 @@
 
 4. 项目根目录中添加gulpfile.js的文件（相当每一个项目启动文件）
 	
-		var gulp = require('gulp');
+```javascript
+var gulp = require('gulp');
 
-		//执行名为default任务
-		gulp.task('default',function(){
-			console.log('Hello World');
-		});
+//执行名为default任务
+gulp.task('default',function(){
+	console.log('Hello World');
+});
+```
 
 5. 运行命令：
 
