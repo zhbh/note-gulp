@@ -1,0 +1,17 @@
+{
+	"boss" : false,//控制“缺少分号”的警告
+	"curly" : true,//循环或者条件语句必须使用花括号包围
+	"eqeqeq" : true,//强制使用三等号
+	"eqnull" : true,//允许==null
+	"expr" : true,//允许应该出现赋值或函数调用的地方使用表达式
+	"immed" : true,//匿名函数调用必须
+	"newcap" : true,//构造器函数首字母大写
+	"noempty" : true,//禁止出现空的代码块
+	"noarg" : true,//禁止使用 arguments.caller 和 arguments.callee ，未来会被弃用， ECMAScript 5 禁止使用 arguments.callee
+	"undef" : false,//变量未定义
+	"regexp" : true,//如果为真，不允许使用.和[^…]的正则
+	"browser" : true,//预定义全局变量 document ， navigator ， FileReader 等
+	"devel" : true,//定义用于调试的全局变量： console ， alert
+	"node" : true,//定义全局变量，
+	"multistr" : true//允许多行字符串
+}
